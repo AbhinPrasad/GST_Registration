@@ -24,6 +24,33 @@ const Form = () => {
 			console.log(values);
 			initializePayment(values).then(({ data }) => {
 				console.log(data);
+				const options = {
+					key: import.meta.env.VITE_KEY_ID,
+					amount: data.amount, // amount in the smallest currency unit
+					currency: "INR",
+					name: "Merchant Name",
+					description: "Purchase Description",
+					order_id: data.id, // generated on your server
+					handler: function (response) {
+						// Handle the successful payment response
+						console.log(response);
+					},
+					prefill: {
+						name: "Abhin",
+						email: "johndoe@example.com"
+					},
+					modal: {
+						ondismiss: function () {
+							// Handle the dismiss of the payment modal
+						}
+					}
+				};
+
+				const razorpay = new window.Razorpay(options);
+				razorpay.open();
+				rzp1.on("payment.failed", function (response) {
+					alert(response.error.code);
+				});
 			});
 		}
 	});

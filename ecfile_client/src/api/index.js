@@ -6,4 +6,5 @@ const API = axios.create({ baseURL: BASE_URL });
 
 export const initializePayment = async (userData) => {
 	const response = await API.post("/payment", userData);
+	return response
 };
