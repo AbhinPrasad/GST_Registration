@@ -1,0 +1,33 @@
+.main__div {
+	display: flex;
+	background-color: transparent;
+	height: 65px;
+	align-items: center;
+}
+
+.left__section {
+	width: 25%;
+}
+
+.right__section {
+	width: 75%;
+}
+ul {
+	list-style: none;
+	justify-content: space-around;
+	display: flex;
+}
+
+.list__item {
+	display: inline;
+	justify-content: space-evenly;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+hr {
+	border: 1px solid ;
+	width: 90%;
+	margin: 0 auto;
+    height: 1;
+}
