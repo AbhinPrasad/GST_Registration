@@ -3,6 +3,7 @@ import "./form.css";
 import options from "../../data/data";
 import { useFormik } from "formik";
 import validationSchema from "../../validation/validation";
+import { initializePayment } from "../../api";
 
 const Form = () => {
 	const [selectedOpt, setSelected] = useState(0);
@@ -21,6 +22,9 @@ const Form = () => {
 		onSubmit: (values) => {
 			values.option = options[selectedOpt];
 			console.log(values);
+			initializePayment(values).then(({ data }) => {
+				console.log(data);
+			});
 		}
 	});
 
