@@ -35,7 +35,7 @@ const userSchema = mongoose.Schema({
 	paymentStatus: {
 		type: String
 	}
-});
+},{timestamps:true});
 
 const userModel = mongoose.model("User", userSchema);
 export default userModel;
