@@ -11,4 +11,27 @@ export const adminSignup = async (req, res) => {
 	res.status(201).json({ message: "admin signup success" });
 };
 
-export const adminLogin = async (req, res) => {};
+export const adminLogin = async (req, res) => {
+	const { email, password } = req.body;
+
+	if (!email || !password) {
+		res.status(400).json({ message: "Add all fields" });
+	}
+
+	try {
+		const admin = await Admin.findOne({ email });
+
+		if (admin) {
+			const checkPassword = await bcrypt.compare(password, admin.password);
+			if (checkPassword) {
+				res.status(200).json({ id: admin._id });
+			} else {
+				res.status(401).json({ message: "Wrong Password" });
+			}
+		} else {
+			res.status(404).json({ message: "email not found" });
+		}
+	} catch (error) {
+		res.status(500).json({ message: error.message });
+	}
+};

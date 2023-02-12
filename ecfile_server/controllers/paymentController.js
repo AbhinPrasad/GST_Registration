@@ -13,7 +13,7 @@ export const initiatePayment = async (req, res) => {
 	const { companyName, phone, email, aadhaar, pan, option } = req.body;
 
 	if (!companyName || !phone || !email || !aadhaar || !pan || !option) {
-		res.status(404);
+		res.status(400);
 		throw new Error("Add all fields");
 	}
 	const amount = option.price;
