@@ -8,6 +8,7 @@ dotenv.config();
 import connectDB from "./config/db.js";
 import errorHandler from "./middleware/errorMiddleware.js";
 import paymentRoute from "./routes/paymentRoute.js";
+import adminRoute from "./routes/adminRoute.js";
 
 const port = process.env.PORT || 8000;
 
@@ -21,6 +22,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 
 app.use("/api/payment", paymentRoute);
+app.use("/api/admin", adminRoute);
 
 app.use(errorHandler);
 
