@@ -1,5 +1,6 @@
 import Admin from "../models/adminModel.js";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 //test api for admin signup
 export const adminSignup = async (req, res) => {
@@ -24,7 +25,11 @@ export const adminLogin = async (req, res) => {
 		if (admin) {
 			const checkPassword = await bcrypt.compare(password, admin.password);
 			if (checkPassword) {
-				res.status(200).json({ id: admin._id });
+				console.log("hey");
+				res.status(200).json({
+					id: admin._id,
+					token: generateToken(admin._id)
+				});
 			} else {
 				res.status(401).json({ message: "Wrong Password" });
 			}
@@ -34,4 +39,10 @@ export const adminLogin = async (req, res) => {
 	} catch (error) {
 		res.status(500).json({ message: error.message });
 	}
+};
+
+const generateToken = (id) => {
+	return jwt.sign({id}, process.env.JWT_KEY, {
+		expiresIn: "5h"
+	});
 };
