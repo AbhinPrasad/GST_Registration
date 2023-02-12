@@ -35,12 +35,8 @@ export const initiatePayment = async (req, res) => {
 
 export const confirmPayment = async (req, res) => {
 	const [paymentDetails, userData] = req.body;
-	console.log(paymentDetails, "payment");
-	// console.log(userData, "user");
-	// console.log(userData.option.name, userData.companyName, "gst");
-
+	
 	if (paymentDetails.error) {
-		console.log(paymentDetails.error.code);
 		const message = paymentDetails.error.description;
 		const user = new User({
 			companyName: userData.companyName,
@@ -63,7 +59,6 @@ export const confirmPayment = async (req, res) => {
 		}
 	} else {
 		const message = `Your payment request for ${userData.option.name} of amount Rs.${userData.option.price} is successfull.`;
-		console.log(message);
 		const user = new User({
 			companyName: userData.companyName,
 			service: userData.option.name,
