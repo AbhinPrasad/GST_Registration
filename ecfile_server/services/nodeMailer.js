@@ -13,8 +13,6 @@ const tranporter = nodeMailer.createTransport({
 });
 
 export const sendEmail = async (email, message) => {
-	console.log(email, "email");
-	console.log(message, "message");
 	try {
 		const info = await tranporter.sendMail({
 			from: process.env.FROM_EMAIL,
@@ -22,7 +20,6 @@ export const sendEmail = async (email, message) => {
 			subject: "GST Payment status",
 			text: message
 		});
-		console.log("Message sent: %s", info.messageId);
 	} catch (err) {
 		console.log(err);
 	}

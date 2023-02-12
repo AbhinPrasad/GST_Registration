@@ -27,7 +27,7 @@ const Form = () => {
 					key: import.meta.env.VITE_KEY_ID,
 					amount: data.amount, // amount in the smallest currency unit
 					currency: "INR",
-					name: "Merchant Name",
+					name: "ECFILE",
 					description: "Purchase Description",
 					order_id: data.id, // generated on your server
 					handler: function (response) {

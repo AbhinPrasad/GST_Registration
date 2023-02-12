@@ -16,7 +16,6 @@ export const initiatePayment = async (req, res) => {
 		res.status(404);
 		throw new Error("Add all fields");
 	}
-	const service = option.name;
 	const amount = option.price;
 
 	try {
@@ -37,6 +36,7 @@ export const initiatePayment = async (req, res) => {
 export const confirmPayment = async (req, res) => {
 	try {
 		const [paymentDetails, userData] = req.body;
+
 		if (paymentDetails.error) {
 			const message = paymentDetails.error.description;
 			const user = new User({
@@ -55,7 +55,7 @@ export const confirmPayment = async (req, res) => {
 
 			const success = await user.save();
 			if (success) {
-				res.status(201).json(message);
+				res.status(201).json({message:"Payment failed"});
 			} else {
 				res.status(400);
 				throw new Error("Invalid user data");
@@ -78,7 +78,7 @@ export const confirmPayment = async (req, res) => {
 
 			const success = await user.save();
 			if (success) {
-				res.status(201).json(message);
+				res.status(201).json({message:"Payment successfull"});
 			} else {
 				res.status(400);
 				throw new Error("Invalid user data");

@@ -15,5 +15,5 @@ export const confirmPayment = async (paymentDetails, userData) => {
 		paymentDetails,
 		userData
 	]);
-	console.log(response,"userclient");
+	console.log(response, "userclient");
 };

@@ -1,14 +1,17 @@
-import React from 'react'
-import Form from './components/form/Form'
-import Header from './components/header/Header'
+import React from "react";
+import { Home, AdminLogin, AdminHome } from "./pages/index.js";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 const App = () => {
-  return (
-    <div>
-      <Header/>
-      <Form/>
-    </div>
-  )
-}
+	return (
+		<BrowserRouter>
+			<Routes>
+				<Route path="/" element={<Home />} />
+				<Route path="/admin" element={<AdminLogin />} />
+				<Route path="/admin/home" element={<AdminHome />} />
+			</Routes>
+		</BrowserRouter>
+	);
+};
 
-export default App
+export default App;
