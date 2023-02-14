@@ -1,4 +1,5 @@
 import Admin from "../models/adminModel.js";
+import User from "../models/userModel.js"
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import asyncHandler from "express-async-handler";
@@ -30,7 +31,8 @@ export const adminLogin = asyncHandler(async (req, res) => {
 });
 
 export const getData = asyncHandler(async(req,res)=>{
-	res.json("hey")
+	const data = await User.find().sort({createdAt:-1})
+	res.json(data)
 })
 
 const generateToken = (id) => {

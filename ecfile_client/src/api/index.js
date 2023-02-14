@@ -18,13 +18,13 @@ export const confirmPayment = async (paymentDetails, userData) => {
 	console.log(response, "userclient");
 };
 
-export const adminLogin = async(loginData)=>{
-	const response = await API.post("/admin",loginData)
+export const adminLogin = async (loginData) => {
+	const response = await API.post("/admin", loginData);
 	console.log(response);
-	return response
-}
+	return response;
+};
 
-export const fetchData = async()=>{
-	const response = await API.get("/admin/data")
-	console.log(response);
-}
+export const fetchData = async () => {
+	const response = await API.get("/admin/data");
+	return response;
+};

@@ -66,5 +66,7 @@ h1 {
 
 .formik__error {
 	font-family: "Poppins", sans-serif;
-	font-size: x-small;
+	font-size: smaller;
 }
+
+
