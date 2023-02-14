@@ -23,3 +23,8 @@ export const adminLogin = async(loginData)=>{
 	console.log(response);
 	return response
 }
+
+export const fetchData = async()=>{
+	const response = await API.get("/admin/data")
+	console.log(response);
+}

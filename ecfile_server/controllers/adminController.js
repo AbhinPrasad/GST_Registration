@@ -3,16 +3,6 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import asyncHandler from "express-async-handler";
 
-//test api for admin signup
-export const adminSignup = async (req, res) => {
-	const { email, password } = req.body;
-	const salt = await bcrypt.genSalt(10);
-	const newPass = await bcrypt.hash(password, salt);
-	const admin = new Admin({ email, password: newPass });
-	admin.save();
-	res.status(201).json({ message: "admin signup success" });
-};
-
 export const adminLogin = asyncHandler(async (req, res) => {
 	const { email, password } = req.body;
 
@@ -38,6 +28,10 @@ export const adminLogin = asyncHandler(async (req, res) => {
 		throw new Error("Email not found");
 	}
 });
+
+export const getData = asyncHandler(async(req,res)=>{
+	res.json("hey")
+})
 
 const generateToken = (id) => {
 	return jwt.sign({ id }, process.env.JWT_KEY, {

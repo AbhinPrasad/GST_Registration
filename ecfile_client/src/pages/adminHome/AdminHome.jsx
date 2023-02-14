@@ -1,9 +1,34 @@
-import React from 'react'
+import React, { useEffect } from "react";
+import { fetchData } from "../../api";
+import { AppBar, Box, Toolbar, Typography, Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const AdminHome = () => {
-  return (
-    <div>AdminHome</div>
-  )
-}
+	const navigate = useNavigate();
+	const handleClick = () => {
+		localStorage.clear();
+		navigate("/admin/login");
+	};
 
-export default AdminHome
+	return (
+		<Box>
+			<AppBar position="static">
+				<Toolbar
+					sx={{
+						flexGrow: 1,
+						display: "flex",
+						justifyContent: "flex-end"
+					}}>
+					<Button
+						sx={{ justifySelf: "flex-end" }}
+						color="inherit"
+						onClick={handleClick}>
+						Logout
+					</Button>
+				</Toolbar>
+			</AppBar>
+		</Box>
+	);
+};
+
+export default AdminHome;

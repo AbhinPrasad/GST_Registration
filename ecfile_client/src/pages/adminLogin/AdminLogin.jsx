@@ -37,6 +37,8 @@ const AdminLogin = () => {
 		onSubmit: (values, { resetForm }) => {
 			adminLogin(values)
 				.then((res) => {
+					console.log(res);
+					localStorage.setItem("token", res.data.token);
 					resetForm({ values: "" });
 					navigate("/admin/home");
 				})
