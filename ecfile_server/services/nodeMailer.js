@@ -1,4 +1,5 @@
 import nodeMailer from "nodemailer";
+import asyncHandler from "express-async-handler";
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -12,15 +13,11 @@ const tranporter = nodeMailer.createTransport({
 	}
 });
 
-export const sendEmail = async (email, message) => {
-	try {
-		const info = await tranporter.sendMail({
-			from: process.env.FROM_EMAIL,
-			to: email,
-			subject: "GST Payment status",
-			text: message
-		});
-	} catch (err) {
-		console.log(err);
-	}
-};
+export const sendEmail = asyncHandler(async (email, message) => {
+	const info = await tranporter.sendMail({
+		from: process.env.FROM_EMAIL,
+		to: email,
+		subject: "GST Payment status",
+		text: message
+	});
+});

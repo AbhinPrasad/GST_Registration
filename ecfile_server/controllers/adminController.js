@@ -1,6 +1,7 @@
 import Admin from "../models/adminModel.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import asyncHandler from "express-async-handler";
 
 //test api for admin signup
 export const adminSignup = async (req, res) => {
@@ -12,37 +13,34 @@ export const adminSignup = async (req, res) => {
 	res.status(201).json({ message: "admin signup success" });
 };
 
-export const adminLogin = async (req, res) => {
+export const adminLogin = asyncHandler(async (req, res) => {
 	const { email, password } = req.body;
 
 	if (!email || !password) {
 		res.status(400).json({ message: "Add all fields" });
 	}
 
-	try {
-		const admin = await Admin.findOne({ email });
+	const admin = await Admin.findOne({ email });
 
-		if (admin) {
-			const checkPassword = await bcrypt.compare(password, admin.password);
-			if (checkPassword) {
-				console.log("hey");
-				res.status(200).json({
-					id: admin._id,
-					token: generateToken(admin._id)
-				});
-			} else {
-				res.status(401).json({ message: "Wrong Password" });
-			}
+	if (admin) {
+		const checkPassword = await bcrypt.compare(password, admin.password);
+		if (checkPassword) {
+			console.log("hey");
+			res.status(200).json({
+				id: admin._id,
+				token: generateToken(admin._id)
+			});
 		} else {
-			res.status(404).json({ message: "email not found" });
+			res.status(401).json({ message: "Wrong Password" });
 		}
-	} catch (error) {
-		res.status(500).json({ message: error.message });
+	} else {
+		res.status(404);
+		throw new Error("Email not found");
 	}
-};
+});
 
 const generateToken = (id) => {
-	return jwt.sign({id}, process.env.JWT_KEY, {
+	return jwt.sign({ id }, process.env.JWT_KEY, {
 		expiresIn: "5h"
 	});
 };
