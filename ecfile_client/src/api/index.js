@@ -17,3 +17,9 @@ export const confirmPayment = async (paymentDetails, userData) => {
 	]);
 	console.log(response, "userclient");
 };
+
+export const adminLogin = async(loginData)=>{
+	const response = await API.post("/admin",loginData)
+	console.log(response);
+	return response
+}

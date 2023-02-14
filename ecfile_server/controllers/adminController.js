@@ -25,16 +25,16 @@ export const adminLogin = asyncHandler(async (req, res) => {
 	if (admin) {
 		const checkPassword = await bcrypt.compare(password, admin.password);
 		if (checkPassword) {
-			console.log("hey");
 			res.status(200).json({
 				id: admin._id,
 				token: generateToken(admin._id)
 			});
 		} else {
-			res.status(401).json({ message: "Wrong Password" });
+			res.status(401)
+			throw new Error("Wrong Password")
 		}
 	} else {
-		res.status(404);
+		res.status(401)
 		throw new Error("Email not found");
 	}
 });

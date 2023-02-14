@@ -3,7 +3,7 @@ import "./form.css";
 import options from "../../data/data";
 import { useFormik } from "formik";
 import validationSchema from "../../validation/validation";
-import { initializePayment,confirmPayment } from "../../api";
+import { initializePayment, confirmPayment } from "../../api";
 
 const Form = () => {
 	const [selectedOpt, setSelected] = useState(0);
@@ -19,7 +19,7 @@ const Form = () => {
 			price: 0
 		},
 		validationSchema,
-		onSubmit: (values) => {
+		onSubmit: (values, { resetForm }) => {
 			values.option = options[selectedOpt];
 			initializePayment(values).then(({ data }) => {
 				console.log(data);
@@ -32,8 +32,8 @@ const Form = () => {
 					order_id: data.id, // generated on your server
 					handler: function (response) {
 						// Handle the successful payment response
-						console.log(response);
-						confirmPayment(response,values)
+						confirmPayment(response, values);
+						resetForm({ values: "" });
 					},
 					prefill: {
 						name: "Abhin",
@@ -50,7 +50,7 @@ const Form = () => {
 				razorpay.open();
 				razorpay.on("payment.failed", function (response) {
 					console.log(response);
-					confirmPayment(response,values)
+					confirmPayment(response, values);
 				});
 			});
 		}
