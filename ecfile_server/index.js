@@ -1,7 +1,6 @@
 import express from "express";
 import cors from "cors";
 import colors from "colors";
-import bodyParser from "body-parser";
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -18,8 +17,7 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cors());
+app.use(cors({origin:"https://ecfilegst.netlify.app/"}));
 
 app.use("/api/payment", paymentRoute);
 app.use("/api/admin", adminRoute);

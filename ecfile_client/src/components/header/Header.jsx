@@ -29,7 +29,7 @@ const Header = () => {
 					</ul>
 				</div>
 			</div>
-			<hr/>
+			<hr />
 		</>
 	);
 };

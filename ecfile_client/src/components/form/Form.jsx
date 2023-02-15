@@ -65,11 +65,11 @@ const Form = () => {
 					</h1>
 				</div>
 				<div className="options">
-				<h3>GST Registration Free</h3>
-				<h3>Unlimited Bills GST Returns</h3>
-				<h3>Free GST Billing Software</h3>
-				<h3>Udyam Registration</h3>
-				<h3>Get this package for Rs.2999 / Year + 18% GST</h3>
+					<h3>GST Registration Free</h3>
+					<h3>Unlimited Bills GST Returns</h3>
+					<h3>Free GST Billing Software</h3>
+					<h3>Udyam Registration</h3>
+					<h3>Get this package for Rs.2999 / Year + 18% GST</h3>
 				</div>
 			</div>
 			<div className="main__right">
