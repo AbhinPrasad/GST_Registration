@@ -4,6 +4,7 @@ import options from "../../data/data";
 import { useFormik } from "formik";
 import validationSchema from "../../validation/validation";
 import { initializePayment, confirmPayment } from "../../api";
+import { TextField, MenuItem } from "@mui/material";
 
 const Form = () => {
 	const [selectedOpt, setSelected] = useState(0);
@@ -20,9 +21,9 @@ const Form = () => {
 		},
 		validationSchema,
 		onSubmit: (values, { resetForm }) => {
+			console.log(values);
 			values.option = options[selectedOpt];
 			initializePayment(values).then(({ data }) => {
-				console.log(data);
 				const options = {
 					key: import.meta.env.VITE_KEY_ID,
 					amount: data.amount, // amount in the smallest currency unit
@@ -77,7 +78,7 @@ const Form = () => {
 					<h3 className="form__heading">
 						Application for GST Registration
 					</h3>
-					<form
+					{/* <form
 						noValidate
 						className="form__section"
 						onSubmit={formik.handleSubmit}>
@@ -190,6 +191,144 @@ const Form = () => {
 							<button type="submit" className="submit__button">
 								PAY NOW
 							</button>
+						</div>
+					</form> */}
+					<form
+						noValidate
+						className="form__section"
+						onSubmit={formik.handleSubmit}>
+						<div className="form__inner-main">
+							<div className="input__divider">
+								<TextField
+									onChange={(e) => setSelected(e.target.value)}
+									select
+									id="outlined-basic"
+									label="Services"
+									variant="outlined"
+									size="small"
+									fullWidth>
+									{options.map((item, index) => (
+										<MenuItem key={item.name} value={index}>
+											{item.name}
+										</MenuItem>
+									))}
+								</TextField>
+							</div>
+							<div className="input__divider">
+								<TextField
+									fullWidth
+									id="outlined-basic"
+									label="Name of Company"
+									variant="outlined"
+									size="small"
+									name="companyName"
+									onChange={formik.handleChange}
+									value={formik.values.companyName}
+								/>
+								{formik.touched.companyName &&
+								formik.errors.companyName ? (
+									<div
+										className="formik_error"
+										style={{ color: "red" }}>
+										{formik.errors.companyName}
+									</div>
+								) : null}
+							</div>
+							<div className="input__divider">
+								<TextField
+									fullWidth
+									id="outlined-basic"
+									label="Phone"
+									size="small"
+									name="phone"
+									onChange={formik.handleChange}
+									value={formik.values.phone}
+									variant="outlined"
+								/>
+								{formik.touched.phone && formik.errors.phone ? (
+									<div
+										className="formik_error"
+										style={{ color: "red" }}>
+										{formik.errors.phone}
+									</div>
+								) : null}
+							</div>
+							<div className="input__divider">
+								<TextField
+									fullWidth
+									id="outlined-basic"
+									label="Email"
+									variant="outlined"
+									size="small"
+									name="email"
+									onChange={formik.handleChange}
+									value={formik.values.email}
+								/>
+								{formik.touched.email && formik.errors.email ? (
+									<div
+										className="formik_error"
+										style={{ color: "red" }}>
+										{formik.errors.email}
+									</div>
+								) : null}
+							</div>
+							<div className="input__divider">
+								<TextField
+									fullWidth
+									id="outlined-basic"
+									label="Aadhaar No"
+									size="small"
+									name="aadhaar"
+									onChange={formik.handleChange}
+									value={formik.values.aadhaar}
+									variant="outlined"
+								/>
+								{formik.touched.aadhaar && formik.errors.aadhaar ? (
+									<div
+										className="formik_error"
+										style={{ color: "red" }}>
+										{formik.errors.aadhaar}
+									</div>
+								) : null}
+							</div>
+							<div className="input__divider">
+								<TextField
+									fullWidth
+									id="outlined-basic"
+									label="PAN"
+									variant="outlined"
+									size="small"
+									name="pan"
+									onChange={formik.handleChange}
+									value={formik.values.pan}
+								/>
+								{formik.touched.pan && formik.errors.pan ? (
+									<div
+										className="formik_error"
+										style={{ color: "red" }}>
+										{formik.errors.pan}
+									</div>
+								) : null}
+							</div>
+							<div className="input__divider">
+								<TextField
+									fullWidth
+									id="outlined-basic"
+									label="Amount"
+									variant="outlined"
+									size="small"
+									name="price"
+									value={options[selectedOpt].price}
+									InputProps={{
+										readOnly: true
+									}}
+								/>
+							</div>
+							<div className="input__divider">
+								<button type="submit" className="submit__button">
+									PAY NOW
+								</button>
+							</div>
 						</div>
 					</form>
 				</div>

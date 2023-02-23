@@ -6,19 +6,16 @@ const validationSchema = Yup.object().shape({
 		.required("Company name required"),
 	email: Yup.string()
 		.email("Invalid email address")
-		.required("Email is required"),
-	phone: Yup.number()
-		// .min(10, "Phone number must be at least 10 characters")
-		// .max(10,"Phone number cannot exceed 10 characters")
-		.required("Password is required"),
-	aadhaar: Yup.number()
-		// .min(14, "Aadhaar must be 14 characters")
-		// .max(14, "Aadhaar must be 14 characters")
-		.required("Aadhaar number is required"),
-	pan: Yup.number()
-		// .min(10, "PAN must be 14 characters")
-		// .max(10, "PAN cannot exceed 14 characters")
-        .required("PAN number is required")
+		.required("Enter your email"),
+	phone: Yup.string()
+		.matches(/^[0-9]{10}$/, "Invalid phone number")
+		.required("Enter Phone Number"),
+	aadhaar: Yup.string()
+		.matches(/^\d{12}$/, "Invalid Aadhaar number")
+		.required("Enter Aadhaar Number"),
+	pan: Yup.string()
+		.matches(/^([A-Z]){5}([0-9]){4}([A-Z]){1}?$/, "Invalid PAN card number")
+		.required("Enter PAN Number")
 });
 
 export default validationSchema;

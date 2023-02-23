@@ -1,15 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&family=Poppins:wght@400;500;600&display=swap");
 
 .main {
-	height: 100vh;
+	/* height: 100vh; */
 	width: 100%;
 	display: flex;
+	justify-content: space-between;
 }
 
 .main__left {
 	margin-left: 3.5rem;
-	width: 60%;
-	height: 100vh;
+	/* width: 60%; */
+	/* height: 100vh; */
 	/* margin-top: auto; */
 	display: flex;
 	flex-direction: column;
@@ -24,27 +25,30 @@
 }
 
 .main__right {
-	width: 50%;
+	/* width: 50%; */
 }
 
 .right__form-container {
 	background-color: white;
-	height: 100vh;
-	width: 80%;
-	margin-left: 80px;
+	/* width: 80%; */
+	/* margin-left: 80px; */
 	align-items: center;
 	border-radius: 5px;
 	text-align: center;
+	padding: 20px;
+	
 }
 
 .form__heading {
 	color: black;
 	font-family: "Open Sans", sans-serif;
+	margin-bottom: 14px;
 }
 
 .form__section {
 	background-color: white;
-	height: 80vh;
+	/* height: 80vh; */
+	
 }
 
 .form__select {
@@ -71,8 +75,8 @@
 	display: block;
 	padding: 15px;
 	width: 70%;
-	margin-top: 20px;
-	margin-left: 60px;
+	margin-top: auto;
+	margin-left: 47px;
 	background-color: #130987;
 	border: none;
 	border-radius: 2px;
@@ -80,9 +84,53 @@
 	font-weight: bolder;
 	font-size: medium;
 	cursor: pointer;
+	justify-content: center;
 }
 
 .formik_error {
-	font-size: 13px;
-	font-family: "Times New Roman", Times, serif;
+	font-size: x-small;
+	font-family: "Poppins", sans-serif;
+	text-align: start;
+}
+
+.options h3 {
+	margin-top: 10px;
+}
+
+.input__divider {
+	margin-top: 10px;
+}
+
+@media screen and (max-width: 900px) {
+	.main {
+		flex-direction: column;
+		/* overflow: auto; */
+	}
+
+	.main__right {
+		/* width: auto; */
+	}
+
+	.right__form-container {
+		width: 80%;
+		margin: 20px auto;
+	}
+
+	.body {
+		height: unset;
+	}
+	.submit__button {
+		margin: 20px auto 0px;
+	}
+}
+
+@media screen and (max-width: 316px) {
+	.left__section-heading {
+		font-size: 30px;
+	}
+
+	.main__left {
+		padding: 20px;
+		margin-left: unset;
+	}
 }

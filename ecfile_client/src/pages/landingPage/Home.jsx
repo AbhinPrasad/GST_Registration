@@ -1,10 +1,10 @@
 import "./home.css";
-import { Header, Form } from "../../components";
+import { Navbar, Form } from "../../components";
 
 const Home = () => {
 	return (
 		<div className="body">
-			<Header />
+			<Navbar />
 			<Form />
 		</div>
 	);
